@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huwelijks APK Poll - Split Screen</title>
+    <title>Huwelijks APK Poll - YM Design</title>
     <style>
-        /* --- Moderne UI Instellingen --- */
+        /* --- Moderne, Professionele YM UI Instellingen --- */
         body {
-            background-color: #F7F9FC;
+            /* Diep donkere achtergrond, past beter bij presentaties/beamers */
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             overflow: hidden;
             position: relative;
+            color: #e2e8f0; /* Zacht witte tekst voor goed contrast */
         }
 
         .achtergrond-logo {
@@ -22,170 +24,119 @@
             height: 100%;
             background-image: url('YMtransparant.png'); 
             background-size: 100% 100%;
-            opacity: 0.25; 
+            background-position: center;
+            opacity: 0.05; /* Heel subtiel op de achtergrond */
             z-index: -1; 
         }
+           
 
         /* --- Split Screen Layout --- */
         .split-layout {
             display: grid;
-            grid-template-columns: 40% 60%;
+            grid-template-columns: 35% 65%;
             height: 100vh;
             width: 100vw;
         }
 
-        /* De containers die de kaarten centreren */
         .qr-section, .quiz-section {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 40px;
+            padding: 50px;
             height: 100%;
             box-sizing: border-box;
         }
 
-        /* --- NIEUW: De QR Kaart (Links) --- */
-        /* Deze heeft nu dezelfde 'zwevende' stijl als rechts */
-        .qr-card {
-            background-color: rgba(255, 255, 255, 0.6); /* Iets witter dan rechts voor leesbaarheid QR */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            border: 1px solid rgba(255, 255, 255, 0.6);
+        /* --- De Kaarten (Glassmorphism effect, strak en modern) --- */
+        .card, .qr-card {
+            background-color: rgba(30, 41, 59, 0.7); /* Donker transparant */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             text-align: center;
             width: 100%;
-            max-width: 450px; /* Zorgt dat hij niet te breed wordt */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
-        .qr-card h2 {
-            color: #2D3748;
-            font-size: 32px;
-            margin-bottom: 30px;
-            margin-top: 0;
-        }
+        .qr-card { max-width: 400px; display: flex; flex-direction: column; align-items: center; }
+        .card { max-width: 850px; z-index: 10; text-align: left; }
 
-        .qr-image {
-            width: 100%;
-            max-width: 300px; /* Iets kleiner gezet zodat het mooi in de kaart past */
-            border-radius: 15px;
-            /* De witte rand om de QR zelf is nu minder nodig omdat de kaart al wit is */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
-        }
+        /* Typografie */
+        .qr-card h2 { color: #d4c4a8; font-size: 28px; margin-bottom: 30px; margin-top: 0; font-weight: 400; letter-spacing: 1px; }
+        
+        h1 { color: #d4c4a8; font-size: 38px; margin-bottom: 10px; margin-top: 0; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
+        p.vraag { color: #cbd5e1; font-size: 24px; margin-bottom: 40px; font-weight: 300; line-height: 1.4; }
 
-        /* --- De Quiz Kaart (Rechts) --- */
-        .card {
-            background-color: rgba(255, 255, 255, 0.01); 
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px); 
-            padding: 40px 50px; 
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15); 
-            border: 1px solid rgba(255, 255, 255, 0.6); 
-            text-align: center;
-            width: 100%;
-            max-width: 800px; 
-            z-index: 10;
-        }
+        .qr-image { width: 100%; max-width: 250px; border-radius: 12px; border: 5px solid rgba(255,255,255,0.9); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
 
-        h1 { color: #2D3748; font-size: 42px; margin-bottom: 10px; margin-top: 0; }
-        p.vraag { color: #718096; font-size: 22px; font-style: italic; margin-bottom: 50px; }
-
-        .optie-rij { display: flex; align-items: center; margin-bottom: 25px; justify-content: flex-start; }
+        /* --- Poll Elementen --- */
+        .optie-rij { display: flex; align-items: center; margin-bottom: 20px; justify-content: flex-start; }
 
         .stem-btn {
-            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 196, 168, 0.3); /* YM Goud/Beige rand */
+            color: #f8fafc;
             padding: 15px 25px;
-            font-size: 18px;
-            font-weight: bold;
+            font-size: 16px;
+            font-weight: 500;
             border-radius: 12px;
             cursor: pointer;
-            width: 200px;
-            text-align: center;
-            transition: filter 0.2s, transform 0.1s;
-            margin-right: 30px;
+            width: 240px; /* Iets breder voor de tekst */
+            text-align: left; /* Tekst links uitlijnen staat professioneler */
+            transition: all 0.3s ease;
+            margin-right: 25px;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .stem-btn:active { transform: scale(0.95); }
-        .stem-btn:hover { filter: brightness(1.1); }
+        .stem-btn:hover { background: rgba(212, 196, 168, 0.15); border-color: rgba(212, 196, 168, 0.8); }
+        .stem-btn:active { transform: scale(0.98); }
+        .stem-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: scale(1); background: rgba(255,255,255,0.02); }
 
-        .btn-0 { background-color: #FF6B6B; color: white; }
-        .btn-1 { background-color: #4ECDC4; color: white; }
-        .btn-2 { background-color: #FFD166; color: #2D3748; }
-        .btn-3 { background-color: #8A2BE2; color: white; }
-
+        /* --- Strakke Poll Balken --- */
         .balk-container {
-            background-color: #EDF2F7;
-            height: 65px;
+            background-color: rgba(15, 23, 42, 0.6); /* Donkere gleuf */
+            height: 45px; /* Iets slanker dan voorheen */
             width: 100%;
-            border-radius: 35px;
+            border-radius: 25px;
             position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+            overflow: hidden; /* Houdt de vulling netjes binnen de randen */
         }
 
         .balk-vulling {
             height: 100%;
             width: 0%; 
-            border-radius: 35px;
-            transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 25px;
+            transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            /* Een elegante, subtiele gradient in de YM kleuren */
+            background: linear-gradient(90deg, #475569 0%, #d4c4a8 100%);
+            box-shadow: 0 0 15px rgba(212, 196, 168, 0.2);
         }
-
-        .balk-0 { background-color: #FF6B6B; }
-        .balk-1 { background-color: #4ECDC4; }
-        .balk-2 { background-color: #FFD166; }
-        .balk-3 { background-color: #8A2BE2; }
 
         .stem-cijfer {
             position: absolute;
             top: 0;
-            height: 65px;
-            line-height: 65px;
-            font-size: 20px;
-            font-weight: bold;
-            transition: left 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.3s;
+            height: 45px;
+            line-height: 45px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: left 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s;
+            color: #f8fafc;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8); /* Zorgt dat cijfer altijd leesbaar is */
         }
 
-        /* --- Geheime Beheerder functionaliteit --- */
-        .geheime-knop {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 120px;
-            height: 120px;
-            z-index: 999;
-            cursor: default; 
-        }
-
-        .admin-menu {
-            display: none; 
-            position: absolute;
-            bottom: 30px;
-            right: 30px; 
-            background-color: white;
-            padding: 15px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            border: 2px solid #E2E8F0;
-            z-index: 1000;
-        }
-        
-        .admin-btn {
-            background-color: #F7F9FC;
-            color: #2D3748;
-            border: 1px solid #CBD5E0;
-            padding: 10px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            margin: 0 5px;
-        }
-
-        .admin-btn.rood { color: white; background-color: #FF6B6B; border-color: #FF6B6B; }
+        /* --- Geheime Beheerder functionaliteit (ongewijzigd qua werking, wel gestyled) --- */
+        .geheime-knop { position: absolute; top: 0; right: 0; width: 100px; height: 100px; z-index: 999; cursor: default; }
+        .admin-menu { display: none; position: absolute; bottom: 30px; right: 30px; background-color: #1e293b; padding: 20px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); z-index: 1000; }
+        .admin-btn { background-color: #334155; color: #f8fafc; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-size: 13px; margin: 0 5px; transition: background 0.2s; }
+        .admin-btn:hover { background-color: #475569; }
+        .admin-btn.rood { background-color: #991b1b; }
+        .admin-btn.rood:hover { background-color: #b91c1c; }
         #file-input { display: none; } 
 
     </style>
@@ -199,44 +150,45 @@
         
         <div class="qr-section">
             <div class="qr-card">
-                <h2>Scan de QR-code en vul de vragen in!</h2>
+                <h2>Scan & Stem</h2>
                 <img src="qrcodequizhapk.png" alt="Scan QR om te stemmen" class="qr-image">
+                <p style="color: #94a3b8; font-size: 14px; margin-top: 25px;">Gebruik de camera van je telefoon</p>
             </div>
         </div>
 
         <div class="quiz-section">
             <div class="card">
-                <h1>Huwelijks APK: <br> Tik om te stemmen! 👆</h1>
-                <p class="vraag">Waar wil jij in jouw huwelijk meer aandacht aan besteden?</p>
+                <h1>Huwelijks APK</h1>
+                <p class="vraag">Wat is volgens jou het allerbelangrijkste ingrediënt voor een sterk huwelijk?</p>
 
                 <div class="optie-rij">
-                    <button class="stem-btn btn-0" onclick="stem(0)">Communicatie</button>
+                    <button class="stem-btn" onclick="stem(0)"><span>1.</span> Humor & Lachen</button>
                     <div class="balk-container" id="container-0">
-                        <div id="vulling-0" class="balk-vulling balk-0"></div>
+                        <div id="vulling-0" class="balk-vulling"></div>
                         <div id="cijfer-0" class="stem-cijfer">0</div>
                     </div>
                 </div>
 
                 <div class="optie-rij">
-                    <button class="stem-btn btn-1" onclick="stem(1)">Tijd voor elkaar</button>
+                    <button class="stem-btn" onclick="stem(1)"><span>2.</span> Wederzijds Vertrouwen</button>
                     <div class="balk-container" id="container-1">
-                        <div id="vulling-1" class="balk-vulling balk-1"></div>
+                        <div id="vulling-1" class="balk-vulling"></div>
                         <div id="cijfer-1" class="stem-cijfer">0</div>
                     </div>
                 </div>
 
                 <div class="optie-rij">
-                    <button class="stem-btn btn-2" onclick="stem(2)">Romantiek</button>
+                    <button class="stem-btn" onclick="stem(2)"><span>3.</span> Open Communicatie</button>
                     <div class="balk-container" id="container-2">
-                        <div id="vulling-2" class="balk-vulling balk-2"></div>
+                        <div id="vulling-2" class="balk-vulling"></div>
                         <div id="cijfer-2" class="stem-cijfer">0</div>
                     </div>
                 </div>
 
                 <div class="optie-rij">
-                    <button class="stem-btn btn-3" onclick="stem(3)">Geloof</button>
+                    <button class="stem-btn" onclick="stem(3)"><span>4.</span> Samen Bidden (Geloof)</button>
                     <div class="balk-container" id="container-3">
-                        <div id="vulling-3" class="balk-vulling balk-3"></div>
+                        <div id="vulling-3" class="balk-vulling"></div>
                         <div id="cijfer-3" class="stem-cijfer">0</div>
                     </div>
                 </div>
@@ -245,11 +197,11 @@
     </div>
 
     <div class="admin-menu" id="admin-menu">
-        <strong style="display: block; margin-bottom: 10px; color: #718096;">Beheerdersmenu</strong>
-        <button class="admin-btn" onclick="slaOpAlsTXT()">📥 Backup Opslaan</button>
-        <button class="admin-btn" onclick="document.getElementById('file-input').click()">📤 Backup Inladen</button>
-        <button class="admin-btn rood" onclick="resetStemmen()">🗑️ Reset</button>
-        <button class="admin-btn" onclick="sluitAdmin()">❌ Sluit</button>
+        <strong style="display: block; margin-bottom: 15px; color: #cbd5e1;">Beheerdersmenu</strong>
+        <button class="admin-btn" onclick="slaOpAlsTXT()">Opslaan</button>
+        <button class="admin-btn" onclick="document.getElementById('file-input').click()">Inladen</button>
+        <button class="admin-btn rood" onclick="resetStemmen()">Reset</button>
+        <button class="admin-btn" onclick="sluitAdmin()">Sluit</button>
         <input type="file" id="file-input" accept=".txt" onchange="laadVanTXT(event)">
     </div>
 
@@ -263,29 +215,37 @@
         function checkGeheimeKlik() {
             klikTeller++;
             clearTimeout(klikTimer);
-            
             klikTimer = setTimeout(() => { klikTeller = 0; }, 2000);
 
             if (klikTeller >= 5) {
                 klikTeller = 0; 
-                let pin = prompt("Geef de 4-cijferige pincode om beheer te openen:");
+                let pin = prompt("Pincode (Beheer):");
                 if (pin === "0000") {
                     document.getElementById('admin-menu').style.display = 'block';
-                } else if (pin !== null) {
-                    alert("Foutieve pincode.");
                 }
             }
         }
 
-        function sluitAdmin() {
-            document.getElementById('admin-menu').style.display = 'none';
-        }
+        function sluitAdmin() { document.getElementById('admin-menu').style.display = 'none'; }
 
-        // --- Stem logica ---
+        // --- Stem logica met Cooldown ---
+        let kanStemmen = true; 
+
         function stem(index) {
+            if (!kanStemmen) return; 
+
+            kanStemmen = false; 
+            let knoppen = document.querySelectorAll('.stem-btn');
+            knoppen.forEach(knop => knop.disabled = true);
+
             stemmen[index]++;
             localStorage.setItem('apkStemmen', JSON.stringify(stemmen));
             tekenBalken();
+
+            setTimeout(() => {
+                kanStemmen = true;
+                knoppen.forEach(knop => knop.disabled = false);
+            }, 1000); // Cooldown op 1 seconde gezet voor vlottere bediening door de beheerder
         }
 
         function tekenBalken() {
@@ -304,14 +264,13 @@
                 let containerBreedte = container.offsetWidth;
                 let pixelBreedte = (percentage / 100) * containerBreedte;
 
-                if (pixelBreedte > 40) {
+                // Cijfer positie logica (strakker gemaakt)
+                if (pixelBreedte > 30) {
                     cijfer.style.left = (pixelBreedte / 2) + 'px';
                     cijfer.style.transform = 'translateX(-50%)'; 
-                    cijfer.style.color = (i === 2) ? '#2D3748' : 'white';
                 } else {
                     cijfer.style.left = (pixelBreedte + 15) + 'px';
                     cijfer.style.transform = 'none';
-                    cijfer.style.color = '#2D3748'; 
                 }
             }
         }
@@ -322,19 +281,13 @@
             const blob = new Blob([tekst], { type: 'text/plain' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            a.download = 'stemmen.txt';
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-            document.body.removeChild(a);
+            a.style.display = 'none'; a.href = url; a.download = 'stemmen.txt';
+            document.body.appendChild(a); a.click(); window.URL.revokeObjectURL(url); document.body.removeChild(a);
         }
 
         function laadVanTXT(event) {
             const bestand = event.target.files[0];
             if (!bestand) return;
-
             const lezer = new FileReader();
             lezer.onload = function(e) {
                 const inhoud = e.target.result.trim();
@@ -344,9 +297,6 @@
                         stemmen = geladenStemmen;
                         localStorage.setItem('apkStemmen', JSON.stringify(stemmen));
                         tekenBalken();
-                        alert("Stemmen succesvol geladen!");
-                    } else {
-                        alert("Het bestand lijkt geen geldige uitslag te bevatten.");
                     }
                 }
             };
@@ -355,7 +305,7 @@
         }
 
         function resetStemmen() {
-            if(confirm("Weet je ZEKER dat je alle stemmen op 0 wilt zetten? Dit kan niet ongedaan gemaakt worden.")) {
+            if(confirm("Zeker weten? Alle stemmen gaan naar 0.")) {
                 stemmen = [0, 0, 0, 0];
                 localStorage.setItem('apkStemmen', JSON.stringify(stemmen));
                 tekenBalken();
