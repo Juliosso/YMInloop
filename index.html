@@ -57,6 +57,18 @@
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
         }
 
+        /* --- Het Nieuwe Logo Linksonder --- */
+        .corner-logo-left {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            width: 150px; /* Pas breedte aan indien nodig */
+            height: auto;
+            opacity: 0.8; 
+            z-index: 20;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+        }
+
         /* --- De Kaart (Nu gecentreerd en rustig) --- */
         .card {
             background-color: rgba(30, 41, 59, 0.6); 
@@ -120,7 +132,9 @@
 
     <div class="particles" id="particles"></div>
     
-    <img src="Logo_MGMK.jpg" alt="Logo" class="corner-logo">
+    <img src="Logo_MGMK.jpg" alt="Logo Links" class="corner-logo-left">
+
+    <img src="Logo_YHM.jpeg" alt="Logo Rechts" class="corner-logo">
 
     <div class="card">
         <h1>Welkom bij de huwelijksbijeenkomst!</h1>
