@@ -8,7 +8,6 @@
         /* --- YM UI Instellingen --- */
         body {
             margin: 0; padding: 0; height: 100vh; width: 100vw;
-            /* Warme, chique gradient passend bij de liefde */
             background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 50%, #2e1065 100%);
             display: flex; justify-content: center; align-items: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,16 +24,15 @@
             opacity: 0.04; z-index: -1; 
         }
 
-        /* --- Nieuwe Animaties voor Kruisjes --- */
+        /* --- Animaties voor Kruisjes --- */
         .particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
         
         .particle-cross {
             position: absolute; 
-            color: rgba(212, 196, 168, 0.4); /* Zacht goud/crème kleur */
-            font-family: 'Times New Roman', Times, serif; /* Klassiek lettertype voor het kruisje */
+            color: rgba(212, 196, 168, 0.4); 
+            font-family: 'Times New Roman', Times, serif; 
             opacity: 0;
             user-select: none;
-            /* Animatie: verschijnen, beetje zweven en dan wegebben */
             animation: fadeCross var(--anim-duration) infinite ease-in-out;
             animation-delay: var(--anim-delay);
         }
@@ -45,74 +43,74 @@
             100% { opacity: 0; transform: scale(1.2) translateY(-30px); }
         }
 
-        /* --- Het Logo Rechtsonder --- */
+        /* --- Logo's --- */
         .corner-logo {
             position: absolute;
             bottom: 30px;
             right: 40px;
-            width: 150px; /* Pas deze breedte aan op basis van je daadwerkelijke logo */
-            height: auto;
-            opacity: 0.8; /* Subtiel transparant zodat het niet de overhand neemt */
-            z-index: 20;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
-        }
-
-        /* --- Het Nieuwe Logo Linksonder --- */
-        .corner-logo-left {
-            position: absolute;
-            bottom: 30px;
-            left: 40px;
-            width: 150px; /* Pas breedte aan indien nodig */
+            width: 150px; 
             height: auto;
             opacity: 0.8; 
             z-index: 20;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
         }
 
-        /* --- De Kaart (Nu gecentreerd en rustig) --- */
+        .corner-logo-left {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            width: 150px; 
+            height: auto;
+            opacity: 0.8; 
+            z-index: 20;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+        }
+
+        /* --- De Kaart (AANGEPAST: Smaller en eleganter) --- */
         .card {
             background-color: rgba(30, 41, 59, 0.6); 
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); 
             border: 1px solid rgba(255, 255, 255, 0.1); 
             border-radius: 30px;
-            padding: 80px 100px; width: 85%; max-width: 1200px; 
+            /* Breedte teruggebracht van 85% naar 70% en max-width naar 900px */
+            padding: 60px 80px; width: 70%; max-width: 900px; 
             box-shadow: 0 35px 70px rgba(0,0,0,0.6);
             text-align: center;
             z-index: 10;
         }
 
-        /* Typografie */
+        /* Typografie (Ietsjes verkleind zodat het mooi in de smallere kaart past) */
         h1 {
-            color: #d4c4a8; font-size: 65px; margin: 0 0 15px 0; 
-            font-weight: 300; letter-spacing: 3px; text-transform: uppercase;
+            color: #d4c4a8; font-size: 55px; margin: 0 0 15px 0; 
+            font-weight: 300; letter-spacing: 3px; text-transform: uppercase; line-height: 1.2;
         }
         
         h2 {
-            color: #fff; font-size: 36px; margin: 0 0 60px 0; font-weight: 300;
+            color: #fff; font-size: 32px; margin: 0 0 50px 0; font-weight: 300;
         }
 
         /* De IJsbreker Vraag */
         .ijsbreker-box {
             background: rgba(0, 0, 0, 0.2); 
             border: 2px dashed rgba(212, 196, 168, 0.4);
-            padding: 50px; 
+            padding: 40px; 
             border-radius: 20px;
-            margin: 0 auto 50px auto;
-            max-width: 900px;
+            margin: 0 auto 40px auto;
+            max-width: 100%;
         }
 
         .ijsbreker-box h3 {
-            color: #38bdf8; font-size: 24px; margin: 0 0 25px 0; 
+            color: #38bdf8; font-size: 22px; margin: 0 0 20px 0; 
             text-transform: uppercase; letter-spacing: 2px; font-weight: 600;
         }
 
         .ijsbreker-box p {
-            font-size: 38px; font-style: italic; color: #e2e8f0; 
+            font-size: 34px; font-style: italic; color: #e2e8f0; 
             margin: 0; line-height: 1.4; font-weight: 300;
         }
 
         .voettekst {
-            color: #94a3b8; font-size: 22px; letter-spacing: 1px; margin: 0;
+            color: #94a3b8; font-size: 20px; letter-spacing: 1px; margin: 0;
         }
 
         /* --- Geheime Beheerder functionaliteit --- */
@@ -132,9 +130,9 @@
 
     <div class="particles" id="particles"></div>
     
-    <img src="Logo_MGMK.jpg" alt="Logo Links" class="corner-logo-left">
+    <img src="Logo_MGMK_Transparant_los.png" alt="Logo Links" class="corner-logo-left">
 
-    <img src="Logo_YHM.jpeg" alt="Logo Rechts" class="corner-logo">
+    <img src="Logo_YMM_Transparant_los.png" alt="Logo Rechts" class="corner-logo">
 
     <div class="card">
         <h1>Welkom bij de huwelijksbijeenkomst!</h1>
@@ -157,14 +155,14 @@
     <script>
         // --- Genereer fading kruisjes ---
         const container = document.getElementById('particles');
-        const numCrosses = 50; // Aantal kruisjes dat tegelijk animeert
+        const numCrosses = 75; // Precies mooi aantal voor de nieuwe ruimte
 
         for(let i = 0; i < numCrosses; i++) {
             let cross = document.createElement('div');
             cross.className = 'particle-cross';
-            cross.innerText = '✝'; // Het kruis symbool
+            cross.innerText = '✝'; 
             
-            // Willekeurige startpositie
+            // Nu de kaart smaller is, kunnen we ze weer 100% willekeurig verdelen
             cross.style.left = Math.random() * 100 + 'vw';
             cross.style.top = Math.random() * 100 + 'vh';
             
@@ -173,11 +171,9 @@
             cross.style.fontSize = fontSize + 'px';
             
             // CSS Variabelen instellen voor de animatie
-            // Willekeurige duur tussen de 6 en 12 seconden voor het verschijnen/verdwijnen
             const duration = (Math.random() * 6 + 6) + 's';
             cross.style.setProperty('--anim-duration', duration);
             
-            // Willekeurige vertraging zodat ze niet allemaal tegelijk beginnen
             const delay = (Math.random() * 10) + 's';
             cross.style.setProperty('--anim-delay', delay);
             
@@ -233,4 +229,3 @@
     </script>
 </body>
 </html>
-
