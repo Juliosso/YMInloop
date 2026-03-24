@@ -3,123 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>YM Welkomstbord - Ingang</title>
+    <title>YM Live Poll - Carrière en Geloof</title>
     <style>
-        /* --- BASIS & ACHTERGROND --- */
+        /* --- BASIS & ACHTERGROND (YM THEMA) --- */
         body {
             margin: 0; padding: 0; height: 100vh; width: 100vw;
-            background: radial-gradient(circle at bottom center, #2b1d0e 0%, #050505 80%);
+            background: radial-gradient(circle at bottom center, #1A2436 0%, #050505 100%);
             display: flex; justify-content: center; align-items: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #fff; overflow: hidden;
-            position: relative;
-            touch-action: manipulation; 
-            -webkit-user-select: none; 
-            user-select: none;
+            color: #fff; overflow: hidden; position: relative;
+            touch-action: manipulation; -webkit-user-select: none; user-select: none;
         }
 
-        .overlay-dark {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3); z-index: -1;
-        }
-
-        /* --- DE KRUISJES (Botersoepel & Alleen aan de randen) --- */
-        .particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
-
+        /* --- DE KRUISJES (Uit de Huwelijk code: vloeiend, faden, oplichten) --- */
+        .particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden;}
+        
         .particle-cross {
-            position: absolute;
-            color: rgba(255, 240, 205, 0.95); /* Heldere kleur ter vervanging van de zware schaduw */
-            font-family: 'Times New Roman', Times, serif;
+            position: absolute; 
+            color: rgba(255, 255, 255, 0.7); /* Sterker wit */
+            font-family: 'Times New Roman', Times, serif; 
             opacity: 0;
-            will-change: transform, opacity; /* Helpt de browser om het smooth te maken */
+            user-select: none;
+            will-change: transform, opacity;
             animation: fadeCross var(--anim-duration) infinite ease-in-out;
             animation-delay: var(--anim-delay);
         }
 
         @keyframes fadeCross {
-            0% { opacity: 0; transform: translate3d(0, 10px, 0) scale(0.8); }
-            50% { opacity: 0.8; transform: translate3d(0, -10px, 0) scale(1); } /* Geen text-shadow meer, zorgt voor perfecte prestaties */
-            100% { opacity: 0; transform: translate3d(0, -30px, 0) scale(1.2); }
+            0% { opacity: 0; transform: scale(0.8) translateY(10px); }
+            50% { opacity: 1; transform: scale(1) translateY(-10px); text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
+            100% { opacity: 0; transform: scale(1.2) translateY(-30px); }
+        }
+
+        /* --- LOGO'S IN DE HOEKEN --- */
+        .logo-links {
+            position: absolute; bottom: 40px; left: 40px;
+            height: 120px; width: auto; opacity: 0.85; z-index: 5; pointer-events: none; 
+        }
+
+        .logo-rechts {
+            position: absolute; bottom: 40px; right: 40px;
+            height: 120px; width: auto; opacity: 0.85; z-index: 5; pointer-events: none; border-radius: 8px; 
         }
 
         /* --- DE KAART EN INHOUD --- */
         .welcome-card {
-            background: rgba(20, 15, 10, 0.6);
+            background: rgba(26, 36, 54, 0.7);
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            border-radius: 20px;
-            padding: 50px; 
-            width: 75vw; 
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.7); 
-            z-index: 10;
-            position: relative; 
+            border: 1px solid rgba(212, 175, 55, 0.3); 
+            border-radius: 20px; padding: 40px 60px; 
+            width: 80vw; max-width: 1000px; text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8); 
+            z-index: 10; position: relative; 
         }
 
-        .logo-area h1 { font-size: 40px; letter-spacing: 6px; margin: 0; color: #d4c4a8; text-transform: uppercase; }
-        .divider { height: 2px; width: 100px; background: #d4c4a8; margin: 25px auto; }
-        .event-title { font-size: 32px; margin-bottom: 40px; font-weight: 300; line-height: 1.4; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
-        .event-title strong { color: #fff; display: block; margin-top: 10px; font-size: 36px; }
+        .logo-area h1 { font-size: 36px; letter-spacing: 4px; margin: 0; color: #D4AF37; text-transform: uppercase; }
+        .divider { height: 2px; width: 150px; background: #D4AF37; margin: 20px auto; }
+        .event-title { margin-bottom: 40px; }
+        .event-title strong { color: #D4AF37; display: block; font-size: 46px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;}
 
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 50px; text-align: left; }
-        .info-item { padding: 20px; background: rgba(255,255,255,0.03); border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.8s ease; }
-        .info-item label { display: block; color: #d4c4a8; text-transform: uppercase; font-size: 13px; letter-spacing: 2px; margin-bottom: 10px; }
-        .info-item span { font-size: 22px; font-weight: 500; }
-
-        .status-begonnen { background: rgba(255, 69, 58, 0.1); border: 1px solid rgba(255, 69, 58, 0.3); }
-        .status-begonnen span { color: #ff453a; }
-
-        /* --- CTA & QR CODE --- */
-        .cta-area {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 40px;
+        /* --- LIVE POLL STYLING --- */
+        .poll-vraag { color: #FFF; font-size: 24px; font-style: italic; margin-bottom: 35px; font-weight: bold;}
+        
+        .optie-rij { display: flex; align-items: center; margin-bottom: 25px; justify-content: flex-start; }
+        
+        .stem-btn {
+            border: none; padding: 15px 25px; font-size: 18px; font-weight: bold;
+            border-radius: 12px; cursor: pointer; width: 260px; text-align: center;
+            transition: filter 0.2s, transform 0.1s, opacity 0.3s; margin-right: 30px; flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
+        .stem-btn:active { transform: scale(0.95); }
+        .stem-btn:hover { filter: brightness(1.2); }
 
-        .qr-placeholder {
-            width: 140px;
-            background: #fff;
-            padding: 12px;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: qrPulse 2.5s infinite ease-in-out; /* Jouw slimme pulserende animatie */
-        }
+        .btn-0 { background-color: #4ECDC4; color: #1A2436; } 
+        .btn-1 { background-color: #FFD166; color: #1A2436; } 
+        .btn-2 { background-color: #FF6B6B; color: white; }   
 
-        @keyframes qrPulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 rgba(212,196,168,0); }
-            50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(212,196,168,0.6); }
-            100% { transform: scale(1); box-shadow: 0 0 0 rgba(212,196,168,0); }
-        }
-
-        .qr-placeholder img { width: 100%; height: auto; display: block; }
-        .qr-text { margin-top: 10px; color: #222; font-weight: bold; text-align: center; }
-
-        .cta-text { text-align: left; font-size: 17px; line-height: 1.5; color: #ccc; }
-        .highlight { color: #d4c4a8; font-weight: bold; }
-
-        /* --- EXTRA LOGO (Binnen de kaart) --- */
-        .extra-logo {
-            position: absolute;
-            bottom: 20px; 
-            right: 20px;  
-            height: 120px; 
-            width: auto;
-            opacity: 0.8;
+        .stem-btn.geblokkeerd {
+            opacity: 0.4;
+            cursor: not-allowed;
             pointer-events: none;
+            filter: grayscale(40%);
+        }
+
+        .balk-container {
+            background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255,255,255,0.2);
+            height: 55px; width: 100%; border-radius: 30px; position: relative;
+        }
+        .balk-vulling {
+            height: 100%; width: 0%; border-radius: 30px;
+            transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .balk-0 { background-color: #4ECDC4; }
+        .balk-1 { background-color: #FFD166; }
+        .balk-2 { background-color: #FF6B6B; }
+
+        .stem-cijfer {
+            position: absolute; top: 0; height: 55px; line-height: 55px;
+            font-size: 22px; font-weight: bold;
+            transition: left 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.3s;
         }
 
         /* --- ADMIN MENU --- */
         .geheime-knop { position: absolute; top: 0; right: 0; width: 150px; height: 150px; z-index: 999; cursor: default; }
-        .admin-menu { display: none; position: absolute; top: 20px; right: 20px; background-color: rgba(30, 41, 59, 0.95); padding: 25px; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1); z-index: 1000; min-width: 250px; backdrop-filter: blur(10px);}
-        .admin-btn { background-color: #334155; color: #f8fafc; border: none; padding: 12px 15px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; margin-bottom: 12px; display: block; width: 100%; transition: background 0.2s;}
+        .admin-menu { 
+            display: none; position: absolute; top: 20px; right: 20px; 
+            background-color: rgba(30, 41, 59, 0.95); padding: 25px; border-radius: 16px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.1); 
+            z-index: 1000; min-width: 250px; backdrop-filter: blur(10px);
+        }
+        .admin-btn { 
+            background-color: #334155; color: #f8fafc; border: none; padding: 12px 15px; 
+            border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: bold; 
+            margin-bottom: 12px; display: block; width: 100%; transition: background 0.2s;
+        }
         .admin-btn:hover { background-color: #475569; }
         .admin-btn.geel { background-color: #d97706; margin-bottom: 20px; } 
         .admin-btn.geel:hover { background-color: #b45309; }
+        .admin-btn.rood { background-color: #FF6B6B; }
+        .admin-btn.rood:hover { background-color: #e53e3e; }
 
     </style>
 </head>
@@ -128,96 +131,134 @@
     <div class="geheime-knop" onclick="checkGeheimeKlik(event)"></div>
 
     <div class="particles" id="particles"></div>
-    <div class="overlay-dark"></div>
+
+    <img src="Logo_MGMK_Transparant_los.png" alt="MGMK Logo" class="logo-links">
+    <img src="LogoYM.jpg" alt="YM Logo" class="logo-rechts">
 
     <div class="welcome-card">
-        <img src="Logo_MGMK_Transparant_los.png" alt="MGMK Logo" class="extra-logo">
-
         <div class="logo-area">
             <h1>Yulfono Mshihoyo - Welkom!</h1>
-            <img src="LogoYM.jpg" alt="YM Logo" style="height: 100px; width: auto; margin-top: 15px;">
             <div class="divider"></div>
         </div>
 
         <div class="event-title">
-            <strong>The Shroud of Turin: <br></strong> Wat vertelt de Lijkwade over de kruisiging van onze Heer Jezus Christus?
+            <strong>Carrière en Geloof</strong>
         </div>
 
-        <div class="info-grid">
-            <div class="info-item" id="status-container">
-                <label>Huidige Status</label>
-                <span id="status-text">Inloop</span>
-            </div>
-            <div class="info-item">
-                <label>Programma</label>
-                <span>19:00 - 21:00 uur</span>
+        <p class="poll-vraag">"Wat vind jij het belangrijkst in jouw (toekomstige) carrière?"</p>
+
+        <div class="optie-rij">
+            <button class="stem-btn btn-0" onclick="stem(0)">Plezier & Passie</button>
+            <div class="balk-container" id="container-0">
+                <div id="vulling-0" class="balk-vulling balk-0"></div>
+                <div id="cijfer-0" class="stem-cijfer">0</div>
             </div>
         </div>
 
-        <div class="cta-area">
-            <div class="qr-placeholder">
-                <img src="QRYMKD.png" alt="QR Code">
-                <div class="qr-text">Scan de QR!</div>
+        <div class="optie-rij">
+            <button class="stem-btn btn-1" onclick="stem(1)">Financiële zekerheid</button>
+            <div class="balk-container" id="container-1">
+                <div id="vulling-1" class="balk-vulling balk-1"></div>
+                <div id="cijfer-1" class="stem-cijfer">0</div>
             </div>
+        </div>
 
-            <div class="cta-text">
-                Het <span class="highlight">Yulfono Mshihoyo</span> kanaal!<br>
-                Mis niets van de <span class="highlight">unieke christelijke</span> content.
+        <div class="optie-rij">
+            <button class="stem-btn btn-2" onclick="stem(2)">Gods plan volgen</button>
+            <div class="balk-container" id="container-2">
+                <div id="vulling-2" class="balk-vulling balk-2"></div>
+                <div id="cijfer-2" class="stem-cijfer">0</div>
             </div>
         </div>
     </div>
 
     <div class="admin-menu" id="admin-menu">
-        <strong style="display: block; margin-bottom: 20px; color: #d4c4a8; font-size: 20px; font-weight: 400; text-transform: uppercase;">Beheerdersmenu</strong>
-        <button class="admin-btn geel" id="fullscreen-btn" onclick="toggleFullscreen()">🔲 Uit Fullscreen gaan</button>
+        <strong style="display: block; margin-bottom: 20px; color: #D4AF37; font-size: 20px; font-weight: 400; text-transform: uppercase;">Beheerdersmenu</strong>
+        <button class="admin-btn geel" id="fullscreen-btn" onclick="toggleFullscreen()">🔲 In/Uit Fullscreen</button>
+        <button class="admin-btn rood" onclick="resetStemmen()">🗑️ Reset Stemmen</button>
         <button class="admin-btn" onclick="sluitAdmin()">❌ Sluit Paneel</button>
     </div>
 
     <script>
-        // --- JS: KRUISJES (Alleen aan de randen) ---
+        // --- 1. KRUISJES ANIMATIE (Genereer fading kruisjes zoals in Huwelijk) ---
         const container = document.getElementById('particles');
-        const numCrosses = 30; // Precies mooi aantal voor de zijkanten
+        const numCrosses = 50; // Aantal kruisjes dat tegelijk animeert
 
         for(let i = 0; i < numCrosses; i++) {
             let cross = document.createElement('div');
             cross.className = 'particle-cross';
-            cross.innerText = '✝'; 
+            cross.innerText = '✝'; // Het kruis symbool
             
-            let xPos, yPos;
+            // Willekeurige startpositie over het hele scherm
+            cross.style.left = Math.random() * 100 + 'vw';
+            cross.style.top = Math.random() * 100 + 'vh';
             
-            // Kies willekeurig 1 van de 4 randen (boven, onder, links, rechts)
-            let rand = Math.floor(Math.random() * 4);
-            
-            if (rand === 0) {
-                // Bovenste strook (0 tot 15% hoogte)
-                xPos = Math.random() * 100; yPos = Math.random() * 15;
-            } else if (rand === 1) {
-                // Onderste strook (85% tot 100% hoogte)
-                xPos = Math.random() * 100; yPos = 85 + (Math.random() * 15);
-            } else if (rand === 2) {
-                // Linker strook (0 tot 12% breedte)
-                xPos = Math.random() * 12; yPos = 15 + (Math.random() * 70);
-            } else {
-                // Rechter strook (88% tot 100% breedte)
-                xPos = 88 + (Math.random() * 12); yPos = 15 + (Math.random() * 70);
-            }
-            
-            cross.style.left = xPos + 'vw';
-            cross.style.top = yPos + 'vh';
-            
+            // Willekeurige grootte (tussen 16px en 36px)
             const fontSize = Math.floor(Math.random() * 20) + 16;
             cross.style.fontSize = fontSize + 'px';
             
+            // CSS Variabelen instellen voor de animatie (6 tot 12 seconden)
             const duration = (Math.random() * 6 + 6) + 's';
             cross.style.setProperty('--anim-duration', duration);
             
+            // Willekeurige vertraging zodat ze niet allemaal tegelijk beginnen
             const delay = (Math.random() * 10) + 's';
             cross.style.setProperty('--anim-delay', delay);
             
             container.appendChild(cross);
         }
 
-        // --- Fullscreen & Admin Logica ---
+        // --- 2. POLL LOGICA & DATA (Met Spam-Beveiliging) ---
+        let stemmen = JSON.parse(localStorage.getItem('ymCarriereStemmen')) || [0, 0, 0];
+        let isAanHetWachten = false;
+
+        function stem(index) {
+            if (isAanHetWachten) return;
+
+            stemmen[index]++;
+            localStorage.setItem('ymCarriereStemmen', JSON.stringify(stemmen));
+            tekenBalken();
+
+            isAanHetWachten = true;
+            
+            const knoppen = document.querySelectorAll('.stem-btn');
+            knoppen.forEach(knop => knop.classList.add('geblokkeerd'));
+
+            setTimeout(() => {
+                isAanHetWachten = false;
+                knoppen.forEach(knop => knop.classList.remove('geblokkeerd'));
+            }, 3000);
+        }
+
+        function tekenBalken() {
+            let maxStemmen = Math.max(...stemmen);
+            if (maxStemmen === 0) maxStemmen = 1; 
+
+            for (let i = 0; i < 3; i++) {
+                let percentage = (stemmen[i] / maxStemmen) * 100;
+                let vulling = document.getElementById('vulling-' + i);
+                let cijfer = document.getElementById('cijfer-' + i);
+                let containerBox = document.getElementById('container-' + i);
+
+                vulling.style.width = percentage + '%';
+                cijfer.innerText = stemmen[i];
+
+                let containerBreedte = containerBox.offsetWidth;
+                let pixelBreedte = (percentage / 100) * containerBreedte;
+
+                if (pixelBreedte > 40) {
+                    cijfer.style.left = (pixelBreedte / 2) + 'px';
+                    cijfer.style.transform = 'translateX(-50%)'; 
+                    cijfer.style.color = (i === 1) ? '#1A2436' : 'white'; 
+                } else {
+                    cijfer.style.left = (pixelBreedte + 15) + 'px';
+                    cijfer.style.transform = 'none';
+                    cijfer.style.color = '#FFF'; 
+                }
+            }
+        }
+
+        // --- 3. ADMIN & FULLSCREEN LOGICA ---
         let hasStartedFullscreen = false;
 
         function startFullscreen() {
@@ -227,20 +268,6 @@
                 else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); } 
                 else if (elem.msRequestFullscreen) { elem.msRequestFullscreen(); } 
                 hasStartedFullscreen = true;
-            }
-        }
-
-        function toggleFullscreen() {
-            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                let elem = document.documentElement;
-                if (elem.requestFullscreen) { elem.requestFullscreen(); }
-                else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
-                document.getElementById('fullscreen-btn').innerText = "🔲 Uit Fullscreen gaan";
-            } else {
-                if (document.exitFullscreen) { document.exitFullscreen(); }
-                else if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); }
-                document.getElementById('fullscreen-btn').innerText = "🔲 In Fullscreen gaan";
-                hasStartedFullscreen = false; 
             }
         }
 
@@ -264,17 +291,31 @@
 
         function sluitAdmin() { document.getElementById('admin-menu').style.display = 'none'; }
 
-        // --- Status Timer ---
-        const secondenTotStart = 2100; // 30 minuten
+        function toggleFullscreen() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                let elem = document.documentElement;
+                if (elem.requestFullscreen) { elem.requestFullscreen(); }
+                else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
+            } else {
+                if (document.exitFullscreen) { document.exitFullscreen(); }
+                else if (document.webkitExitFullscreen) { document.webkitExitFullscreen(); }
+                hasStartedFullscreen = false; 
+            }
+        }
 
-        setTimeout(function() {
-            const statusBox = document.getElementById('status-container');
-            const statusText = document.getElementById('status-text');
+        function resetStemmen() {
+            if(confirm("Weet je ZEKER dat je alle stemmen op 0 wilt zetten?")) {
+                stemmen = [0, 0, 0];
+                localStorage.setItem('ymCarriereStemmen', JSON.stringify(stemmen));
+                tekenBalken();
+                sluitAdmin(); 
+            }
+        }
 
-            statusText.innerText = "De lezing is begonnen";
-            statusBox.classList.add('status-begonnen');
-            
-        }, secondenTotStart * 1000);
+        window.onload = function() {
+            tekenBalken();
+        };
+        window.addEventListener('resize', tekenBalken);
     </script>
 </body>
 </html>
